@@ -1,0 +1,13 @@
+server {
+
+    server_name prometheus.studygroup.site www.prometheus.studygroup.site;
+    root /var/www/prometheus/html;
+    index index.html index.xml;
+
+        listen [::]:80;
+        listen 80;
+
+        location / {
+                return 301 $scheme://185.240.103.52:9090/;
+        }
+}

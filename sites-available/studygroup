@@ -4,7 +4,7 @@ server {
     root /var/www/studygroup/html;
     index index.html index.xml;
 
-    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen [::]:443 ssl; # managed by Certbot
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/studygroup.site/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/studygroup.site/privkey.pem; # managed by Certbot
@@ -20,6 +20,10 @@ server {
                 proxy_set_header Upgrade $http_upgrade;
                 proxy_set_header Connection "upgrade";
         }
+
+	location /metrics {
+		stub_status on;
+	}
 }
 
 server {
